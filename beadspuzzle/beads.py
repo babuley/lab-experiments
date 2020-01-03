@@ -31,10 +31,7 @@ def isTheSameArray(a, b):
 
 
 def alreadyIn(all, cand):
-    for alreadyIn in all:
-        if isTheSameArray(alreadyIn, cand):
-            return True
-    return False
+    return len(list(filter(lambda c: isTheSameArray(c, cand), all))) != 0
 
 # Calculate the sum of the elements in the array
 

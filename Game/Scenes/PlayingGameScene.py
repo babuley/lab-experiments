@@ -24,13 +24,11 @@ class PlayingGameScene(Scene):
 
         self.clearText()
 
-        self.addText("Sokoban ",
-                     x=0,
+        self.addText("Sokoban ", x=0,
                      y=GameConstants.SCREEN_SIZE[1] - 60, size=30)
 
         self.addText("Level: " + str(self.getGame().getLevel()),
-                     x=0,
-                     y=GameConstants.SCREEN_SIZE[1] - 30, size=30)
+                     x=0, y=GameConstants.SCREEN_SIZE[1] - 30, size=30)
 
     def isPositionOccupied(self, pos):
         def taken(w): return w.getPosition()[
@@ -42,9 +40,11 @@ class PlayingGameScene(Scene):
         boulders = self.getGame().getBoulders()
         targets = self.getGame().getTargets()
         c = 0
+        def matchItemToTarget(b, t): return b.getPosition()[0] == t.getPosition(
+        )[0] and b.getPosition()[1] == t.getPosition()[1]
         for b in boulders:
             for t in targets:
-                if b.getPosition()[0] == t.getPosition()[0] and b.getPosition()[1] == t.getPosition()[1]:
+                if matchItemToTarget(b, t):
                     c += 1
         return c == len(boulders)
 
