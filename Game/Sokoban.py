@@ -6,7 +6,7 @@ import pygame, sys
 import os
 import random
 
-class Sokoban:
+class Sokoban(object):
 
     def __initSets(self):
         self.__assets = []

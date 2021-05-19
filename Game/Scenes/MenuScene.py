@@ -2,7 +2,7 @@ import pygame
 from Scenes.Scene import Scene
 from Shared import *
 
-class MenuScene(Scene):
+class MenuScene(Scene, object):
 
      def __init__(self, game):
          super(MenuScene, self).__init__(game)

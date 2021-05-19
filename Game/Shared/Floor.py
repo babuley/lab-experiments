@@ -1,7 +1,7 @@
 from Shared import Item
 from Shared.GameConstants import *
 
-class Floor(Item):
+class Floor(Item, object):
     def __init__(self, position, sprite, game):
         self.__game = game
 

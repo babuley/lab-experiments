@@ -7,7 +7,7 @@ from Shared import Boulder
 import random
 
 
-class PlayingGameScene(Scene):
+class PlayingGameScene(Scene, object):
 
     def __resetBlackBox(self):
         self.__blackBox = []

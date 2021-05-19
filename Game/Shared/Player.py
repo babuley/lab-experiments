@@ -2,7 +2,7 @@ from Shared import Item
 from Shared.GameConstants import *
 
 
-class Player(Item):
+class Player(Item, object):
     def __init__(self, position, sprite, game):
         self.__game = game
 

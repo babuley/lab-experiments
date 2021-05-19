@@ -1,6 +1,6 @@
 import os
 
-class GameConstants:    
+class GameConstants(object):
     SCREEN_SIZE = [1200,800]
     TILE_SIZE = [42,42]
 
