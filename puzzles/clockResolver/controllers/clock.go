@@ -49,8 +49,12 @@ func (clockCtrl *clockControler) getClock(w http.ResponseWriter, r *http.Request
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 	}
-	clock := models.NewClock(hour, minute)
-	encodeResponseAsJSON(clock, w)
+	clock, err := models.NewClock(hour, minute)
+	if err != nil {
+		encodeResponseAsJSON(clock, w)
+	} else {
+		w.WriteHeader(http.StatusBadRequest)
+	}
 }
 
 func newClockController() *clockControler {

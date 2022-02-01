@@ -1,6 +1,9 @@
 package models
 
-import "math"
+import (
+	"errors"
+	"math"
+)
 
 const (
 	degreePerMinuteWithinOneHour float32 = 5 * 6.0 / 60.0
@@ -14,17 +17,16 @@ type Clock struct {
 	Angle  float32
 }
 
-func NewClock(hour int, minute int) Clock {
-	if hour < 0 || hour > 24 || minute < 0 || minute > 60 {
-		panic("Invalid hour or minute")
-	}
-
+func NewClock(hour int, minute int) (Clock, error) {
 	c := Clock{
 		Hour:   hour,
 		Minute: minute,
 	}
+	if hour < 0 || hour > 24 || minute < 0 || minute > 60 {
+		return c, errors.New("Illegal hour or minute error")
+	}
 	c.Angle, _ = c.SolveAngle()
-	return c
+	return c, nil
 }
 
 func (clock Clock) SolveAngle() (float32, error) {
@@ -40,7 +42,8 @@ func GetAllClocks() []Clock {
 	for h < 12 {
 		m := 0
 		for m < 60 {
-			slice = append(slice, NewClock(h, m))
+			clock, _ := NewClock(h, m)
+			slice = append(slice, clock)
 			m++
 		}
 		h++
